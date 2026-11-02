@@ -1,10 +1,4 @@
 # Put your Behat suites definitions here
 
 default:
-    suites:
-        greeting_customer:
-            contexts:
-                - steve_boulay_sylius_sandbox_payment.context.ui.shop.welcome
-
-            filters:
-                tags: "@greeting_customer"
+    suites: {}

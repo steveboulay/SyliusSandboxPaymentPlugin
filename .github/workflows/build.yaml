@@ -88,6 +88,7 @@ jobs:
 
             -
                 name: Run Behat
+                if: hashFiles('features/**/*.feature') != ''
                 run: vendor/bin/behat --colors --strict -vvv --no-interaction -f progress || vendor/bin/behat --colors --strict -vvv --no-interaction -f progress --rerun
 
             -
