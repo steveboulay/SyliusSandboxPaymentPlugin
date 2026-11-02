@@ -4,7 +4,7 @@ default:
     suites:
         greeting_customer:
             contexts:
-                - acme_sylius_example.context.ui.shop.welcome
+                - steve_boulay_sylius_sandbox_payment.context.ui.shop.welcome
 
             filters:
                 tags: "@greeting_customer"

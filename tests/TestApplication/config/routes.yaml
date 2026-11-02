@@ -1,5 +1,5 @@
-acme_sylius_example_admin:
-    resource: "@AcmeSyliusExamplePlugin/config/routes/admin.yaml"
+steve_boulay_sylius_sandbox_payment_admin:
+    resource: "@SteveBoulaySyliusSandboxPaymentPlugin/config/routes/admin.yaml"
 
-acme_sylius_example_shop:
-    resource: "@AcmeSyliusExamplePlugin/config/routes/shop.yaml"
+steve_boulay_sylius_sandbox_payment_shop:
+    resource: "@SteveBoulaySyliusSandboxPaymentPlugin/config/routes/shop.yaml"

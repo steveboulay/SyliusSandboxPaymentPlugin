@@ -1,7 +1,7 @@
 {
-    "name": "sylius/plugin-skeleton",
+    "name": "steveboulay/sylius-sandbox-payment-plugin",
     "type": "sylius-plugin",
-    "description": "Acme example plugin for Sylius.",
+    "description": "Simulated payment gateway for Sylius",
     "keywords": [
         "sylius",
         "sylius-plugin",
@@ -64,23 +64,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Acme\\SyliusExamplePlugin\\": "src/"
+            "SteveBoulay\\SyliusSandboxPaymentPlugin\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\Acme\\SyliusExamplePlugin\\": ["tests/", "tests/TestApplication/src/"]
+            "Tests\\SteveBoulay\\SyliusSandboxPaymentPlugin\\": [
+                "tests/",
+                "tests/TestApplication/src/"
+            ]
         }
     },
     "scripts": {
-        "post-root-package-install": [
-            "@php bin/validate-directory.php"
-        ],
-        "post-create-project-cmd": [
-            "@php bin/rename-plugin.php",
-            "@test-app-init",
-            "@php bin/show-success.php"
-        ],
         "database-reset": [
             "vendor/bin/console doctrine:database:drop --force --if-exists",
             "vendor/bin/console doctrine:database:create",

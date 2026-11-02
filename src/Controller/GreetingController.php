@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Acme\SyliusExamplePlugin\Controller;
+namespace SteveBoulay\SyliusSandboxPaymentPlugin\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,7 +12,7 @@ final class GreetingController extends AbstractController
     public function staticallyGreetAction(?string $name): Response
     {
         return $this->render(
-            '@AcmeSyliusExamplePlugin/shop/greeting/static.html.twig',
+            '@SteveBoulaySyliusSandboxPaymentPlugin/shop/greeting/static.html.twig',
             ['greeting' => $this->getGreeting($name)],
         );
     }
@@ -20,7 +20,7 @@ final class GreetingController extends AbstractController
     public function dynamicallyGreetAction(?string $name): Response
     {
         return $this->render(
-            '@AcmeSyliusExamplePlugin/shop/greeting/dynamic.html.twig',
+            '@SteveBoulaySyliusSandboxPaymentPlugin/shop/greeting/dynamic.html.twig',
             ['greeting' => $this->getGreeting($name)],
         );
     }

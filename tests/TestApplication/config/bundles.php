@@ -1,5 +1,5 @@
 <?php
 
 return [
-    Acme\SyliusExamplePlugin\AcmeSyliusExamplePlugin::class => ['all' => true],
+    SteveBoulay\SyliusSandboxPaymentPlugin\SteveBoulaySyliusSandboxPaymentPlugin::class => ['all' => true],
 ];
