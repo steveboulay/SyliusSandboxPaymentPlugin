@@ -4,6 +4,7 @@ parameters:
     paths:
         - src
         - tests/Behat
+        - tests/Unit
 
     excludePaths:
         # Makes PHPStan crash
