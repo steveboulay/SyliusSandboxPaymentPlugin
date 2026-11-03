@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\SteveBoulay\SyliusSandboxPaymentPlugin\Unit\Core\Wehhook;
+namespace Tests\SteveBoulay\SyliusSandboxPaymentPlugin\Unit\Core\Webhook;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
@@ -16,7 +16,7 @@ final class WebhookSignatureTest extends TestCase
 
     private const PAYLOAD = '{"id":"evt_1","type":"payment.succeeded"}';
 
-    private const PAYLOADFAILED = '{"id":"evt_1","type":"payment.failed"}';
+    private const MODIFIED_PAYLOAD = '{"id":"evt_1","type":"payment.failed"}';
 
     private const TIMESTAMP = 1762041600;
 
@@ -52,7 +52,7 @@ final class WebhookSignatureTest extends TestCase
 
         $this->expectException(InvalidWebhookSignature::class);
 
-        $signature->verify(self::PAYLOADFAILED, $header, self::TIMESTAMP);
+        $signature->verify(self::MODIFIED_PAYLOAD, $header, self::TIMESTAMP);
     }
 
     #[Test]
@@ -145,5 +145,20 @@ final class WebhookSignatureTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
 
         new WebhookSignature(self::SECRET, -1);
+    }
+
+    #[Test]
+    public function it_rejects_a_modified_timestamp(): void
+    {
+        $signature = new WebhookSignature(self::SECRET);
+        $now = self::TIMESTAMP + 1000;
+
+        $header = $signature->sign(self::PAYLOAD, self::TIMESTAMP);
+        $replayedHeader = str_replace('t=' . self::TIMESTAMP, 't=' . $now, $header);
+
+        $this->expectException(InvalidWebhookSignature::class);
+        $this->expectExceptionMessage('Invalid webhook signature.');
+
+        $signature->verify(self::PAYLOAD, $replayedHeader, $now);
     }
 }
