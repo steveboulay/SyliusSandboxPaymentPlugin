@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace SteveBoulay\SyliusSandboxPaymentPlugin\Core\WebHook;
+namespace SteveBoulay\SyliusSandboxPaymentPlugin\Core\Webhook;
 
 final readonly class WebhookSignature
 {
     public function __construct(private string $secret, private int $toleranceInSeconds = 300)
     {
         if ($secret === '') {
-            throw new \InvalidArgumentException("Secret don't be empty");
+            throw new \InvalidArgumentException('The secret must not be empty.');
         }
 
         if ($toleranceInSeconds < 0) {
-            throw new \InvalidArgumentException('toleranceInSeconds must be positive');
+            throw new \InvalidArgumentException('The tolerance must not be negative.');
         }
     }
 
