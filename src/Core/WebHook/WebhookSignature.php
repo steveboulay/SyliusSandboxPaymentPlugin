@@ -35,7 +35,7 @@ final readonly class WebhookSignature
             throw new InvalidWebhookSignature('Malformed webhook signature header.');
         }
 
-        $timestamp = (int)$matches[1];
+        $timestamp = (int) $matches[1];
         $receivedHmac = $matches[2];
 
         if (abs($now - $timestamp) > $this->toleranceInSeconds) {
