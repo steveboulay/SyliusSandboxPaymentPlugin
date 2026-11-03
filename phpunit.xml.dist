@@ -4,6 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
     colors="true"
+    defaultTestSuite="all"
     bootstrap="vendor/sylius/test-application/config/bootstrap.php"
 >
     <php>

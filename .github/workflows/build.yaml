@@ -2,8 +2,7 @@ name: Build
 
 on:
     push:
-        branches-ignore:
-            - 'dependabot/**'
+        branches: [main]
         paths-ignore:
             - "*.md"
     pull_request:
