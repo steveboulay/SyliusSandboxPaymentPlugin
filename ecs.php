@@ -10,6 +10,7 @@ return static function (ECSConfig $ecsConfig): void {
         __DIR__ . '/tests/Behat',
         __DIR__ . '/ecs.php',
         __DIR__ . '/tests/Unit',
+        __DIR__ . '/tests/Integration',
     ]);
 
     $ecsConfig->import('vendor/sylius-labs/coding-standard/ecs.php');
