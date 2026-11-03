@@ -2,3 +2,10 @@
 
 imports:
     - { resource: "twig_hooks/**/*.yaml" }
+
+sylius_payment:
+    gateway_config:
+        validation_groups:
+            sandbox:
+                - sylius
+                - sandbox

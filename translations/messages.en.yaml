@@ -1,0 +1,6 @@
+steve_boulay_sylius_sandbox_payment:
+    gateway_factory:
+        sandbox: Sandbox (simulated payments)
+    form:
+        gateway_configuration:
+            webhook_secret: Webhook secret
