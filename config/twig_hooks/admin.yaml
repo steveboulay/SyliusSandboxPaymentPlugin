@@ -5,3 +5,4 @@ sylius_twig_hooks:
                 template: '@SteveBoulaySyliusSandboxPaymentPlugin/admin/payment_method/form/webhook_secret.html.twig'
                 priority: 0
         'sylius_admin.payment_method.update.content.form.sections.gateway_configuration.sandbox': *sandbox_form
+        
