@@ -1,0 +1,28 @@
+{
+	"Classe de test PHPUnit": {
+		"scope": "php",
+		"prefix": "testcase",
+		"isFileTemplate": true,
+		"description": "Classe de test PHPUnit, namespace déduit du chemin",
+		"body": [
+			"<?php",
+			"",
+			"declare(strict_types=1);",
+			"",
+			"namespace Tests\\SteveBoulay\\SyliusSandboxPaymentPlugin\\\\${RELATIVE_FILEPATH/^tests\\/|\\/[^\\/]*$|(\\/)/${1:+\\\\}/g};",
+			"",
+			"use PHPUnit\\Framework\\Attributes\\Test;",
+			"use PHPUnit\\Framework\\TestCase;",
+			"",
+			"final class ${TM_FILENAME_BASE} extends TestCase",
+			"{",
+			"\t#[Test]",
+			"\tpublic function ${1:it_does_something}(): void",
+			"\t{",
+			"\t\t$0",
+			"\t}",
+			"}",
+			""
+		]
+	}
+}
