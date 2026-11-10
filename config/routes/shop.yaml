@@ -1,1 +1,7 @@
-# Define your own shop routes here
+steve_boulay_sylius_sandbox_payment_simulated_payment_page:
+    path: /sandbox/pay/{hash}
+    methods: [GET]
+    requirements:
+        hash: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+    defaults:
+        _controller: SteveBoulay\SyliusSandboxPaymentPlugin\Controller\SimulatedPaymentPageAction

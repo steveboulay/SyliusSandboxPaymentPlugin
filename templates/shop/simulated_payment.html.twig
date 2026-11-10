@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|replace({'_': '-'}) }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ 'steve_boulay_sylius_sandbox_payment.simulated_payment_page.title'|trans }}</title>
+</head>
+<body>
+    <h1>{{ 'steve_boulay_sylius_sandbox_payment.simulated_payment_page.title'|trans }}</h1>
+
+    <p>{{ 'steve_boulay_sylius_sandbox_payment.simulated_payment_page.notice'|trans }}</p>
+
+    <p>
+        {{ 'steve_boulay_sylius_sandbox_payment.simulated_payment_page.amount'|trans({
+            '%amount%': payment.amount|sylius_format_money(payment.currencyCode, app.request.locale)
+        }) }}
+    </p>
+</body>
+</html>
