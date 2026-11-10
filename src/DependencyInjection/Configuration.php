@@ -9,13 +9,9 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 final class Configuration implements ConfigurationInterface
 {
-    /**
-     * @psalm-suppress UnusedVariable
-     */
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('steve_boulay_sylius_sandbox_payment');
-        $rootNode = $treeBuilder->getRootNode();
 
         return $treeBuilder;
     }

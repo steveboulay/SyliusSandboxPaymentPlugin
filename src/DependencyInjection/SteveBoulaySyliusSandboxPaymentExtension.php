@@ -15,7 +15,6 @@ final class SteveBoulaySyliusSandboxPaymentExtension extends AbstractResourceExt
 {
     use PrependDoctrineMigrationsTrait;
 
-    /** @psalm-suppress UnusedVariable */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new PhpFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
