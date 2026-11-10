@@ -23,11 +23,15 @@ The code is split by responsibility:
 | Folder | Role | Depends on Sylius |
 |---|---|---|
 | `src/Core` | Business rules in plain PHP, such as the webhook signature | No |
-| `src/Form`, `config`, `templates`, `translations` | Integration with Sylius: payment method, admin form, Twig hooks | Yes |
+| `src/Command`, `src/CommandProvider`, `src/CommandHandler` | Payment Request flow: commands, the providers that create them, and their handlers | Yes |
+| `src/OrderPay` | HTTP responses sent to the customer during payment, such as the redirect to the simulated page | Yes |
+| `src/Controller`, `templates/shop` | Simulated payment page | Yes |
+| `src/Form`, `templates/admin` | Payment method configuration in the admin panel | Yes |
+| `config`, `translations` | Service wiring, routes, Twig hooks and translations | Yes |
 
 Keeping `src/Core` free of any Sylius dependency makes it simple to unit test, and it could be reused in a plugin for another e-commerce platform.
 
-The payment flow will use the Payment Request system introduced in Sylius 2.0, rather than Payum.
+The payment flow uses the Payment Request system introduced in Sylius 2.0, rather than Payum.
 
 ## Roadmap
 
@@ -73,6 +77,7 @@ docker compose exec php vendor/bin/console sylius:payment:generate-key
 |---|---|
 | `make ecs` | Coding standard (Sylius Coding Standard) |
 | `make phpstan` | Static analysis with PHPStan, at the maximum level |
+| `make lint` | Syntax of Twig templates and YAML files |
 | `make phpunit` | Unit and integration tests |
 | `make behat` | End-to-end scenarios (none yet) |
 
@@ -80,7 +85,7 @@ GitHub Actions runs these checks, along with Composer and service container vali
 
 ## Workflow
 
-Each change is made on its own branch, checked by the CI in a pull request, then squash-merged into `main`. Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/).
+Each change is made on its own branch and checked by the CI in a pull request. Pull requests are merged into `main` with a merge commit rather than squashed, so that the history keeps each step of the work, for example a failing test followed by the code that makes it pass. Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/).
 
 ## License
 

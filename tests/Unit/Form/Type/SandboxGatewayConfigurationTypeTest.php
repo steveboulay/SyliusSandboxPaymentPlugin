@@ -12,15 +12,17 @@ use Symfony\Component\Validator\Validation;
 
 final class SandboxGatewayConfigurationTypeTest extends TypeTestCase
 {
+    private const SECRET = 'whsec_test';
+
     #[Test]
     public function it_keeps_the_submitted_webhook_secret(): void
     {
         $form = $this->factory->create(SandboxGatewayConfigurationType::class);
 
-        $form->submit(['webhook_secret' => 'whsec_test']);
+        $form->submit(['webhook_secret' => self::SECRET]);
 
         self::assertTrue($form->isSynchronized());
-        self::assertSame(['webhook_secret' => 'whsec_test'], $form->getData());
+        self::assertSame(['webhook_secret' => self::SECRET], $form->getData());
     }
 
     #[Test]
