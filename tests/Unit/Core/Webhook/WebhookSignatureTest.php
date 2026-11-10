@@ -7,7 +7,7 @@ namespace Tests\SteveBoulay\SyliusSandboxPaymentPlugin\Unit\Core\Webhook;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
-use SteveBoulay\SyliusSandboxPaymentPlugin\Core\Webhook\InvalidWebhookSignature;
+use SteveBoulay\SyliusSandboxPaymentPlugin\Core\Webhook\InvalidWebhookSignatureException;
 use SteveBoulay\SyliusSandboxPaymentPlugin\Core\Webhook\WebhookSignature;
 
 final class WebhookSignatureTest extends TestCase
@@ -50,7 +50,8 @@ final class WebhookSignatureTest extends TestCase
 
         $header = $signature->sign(self::PAYLOAD, self::TIMESTAMP);
 
-        $this->expectException(InvalidWebhookSignature::class);
+        $this->expectException(InvalidWebhookSignatureException::class);
+        $this->expectExceptionMessage('Invalid webhook signature.');
 
         $signature->verify(self::MODIFIED_PAYLOAD, $header, self::TIMESTAMP);
     }
@@ -63,7 +64,8 @@ final class WebhookSignatureTest extends TestCase
 
         $signature = new WebhookSignature(self::SECRET);
 
-        $this->expectException(InvalidWebhookSignature::class);
+        $this->expectException(InvalidWebhookSignatureException::class);
+        $this->expectExceptionMessage('Invalid webhook signature.');
 
         $signature->verify(self::PAYLOAD, $header, self::TIMESTAMP);
     }
@@ -75,7 +77,8 @@ final class WebhookSignatureTest extends TestCase
 
         $header = $signature->sign(self::PAYLOAD, self::TIMESTAMP);
 
-        $this->expectException(InvalidWebhookSignature::class);
+        $this->expectException(InvalidWebhookSignatureException::class);
+        $this->expectExceptionMessage('Webhook timestamp is outside the tolerance window.');
 
         $signature->verify(self::PAYLOAD, $header, self::TIMESTAMP + 301);
     }
@@ -99,7 +102,8 @@ final class WebhookSignatureTest extends TestCase
 
         $header = $signature->sign(self::PAYLOAD, self::TIMESTAMP);
 
-        $this->expectException(InvalidWebhookSignature::class);
+        $this->expectException(InvalidWebhookSignatureException::class);
+        $this->expectExceptionMessage('Webhook timestamp is outside the tolerance window.');
 
         $signature->verify(self::PAYLOAD, $header, self::TIMESTAMP - 301);
     }
@@ -110,7 +114,7 @@ final class WebhookSignatureTest extends TestCase
     {
         $signature = new WebhookSignature(self::SECRET);
 
-        $this->expectException(InvalidWebhookSignature::class);
+        $this->expectException(InvalidWebhookSignatureException::class);
         $this->expectExceptionMessage('Malformed webhook signature header.');
 
         $signature->verify(self::PAYLOAD, $header, self::TIMESTAMP);
@@ -132,17 +136,19 @@ final class WebhookSignatureTest extends TestCase
     }
 
     #[Test]
-    public function it_refuses_an_empty_secret(): void
+    public function it_rejects_an_empty_secret(): void
     {
         $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The secret must not be empty.');
 
         new WebhookSignature('');
     }
 
     #[Test]
-    public function it_refuses_a_negative_tolerance(): void
+    public function it_rejects_a_negative_tolerance(): void
     {
         $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The tolerance must not be negative.');
 
         new WebhookSignature(self::SECRET, -1);
     }
@@ -156,7 +162,7 @@ final class WebhookSignatureTest extends TestCase
         $header = $signature->sign(self::PAYLOAD, self::TIMESTAMP);
         $replayedHeader = str_replace('t=' . self::TIMESTAMP, 't=' . $now, $header);
 
-        $this->expectException(InvalidWebhookSignature::class);
+        $this->expectException(InvalidWebhookSignatureException::class);
         $this->expectExceptionMessage('Invalid webhook signature.');
 
         $signature->verify(self::PAYLOAD, $replayedHeader, $now);
