@@ -60,7 +60,7 @@ final class CaptureHttpResponseProviderTest extends TestCase
      */
     #[Test]
     #[DataProvider('invalidResponseData')]
-    public function it_fails_without_a_valid_url(array $responseData): void
+    public function it_rejects_response_data_without_a_valid_url(array $responseData): void
     {
         $paymentRequest = $this->createMock(PaymentRequestInterface::class);
         $paymentRequest->method('getResponseData')->willReturn($responseData);
