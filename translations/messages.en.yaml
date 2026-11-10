@@ -4,3 +4,7 @@ steve_boulay_sylius_sandbox_payment:
     form:
         gateway_configuration:
             webhook_secret: Webhook secret
+    simulated_payment_page:
+        title: 'Sandbox: simulated payment'
+        notice: No real payment is made. This page is for testing only.
+        amount: 'Amount to pay: %amount%'
