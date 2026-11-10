@@ -12,6 +12,7 @@ Available now:
 
 - **Sandbox payment method in the admin panel.** "Sandbox (simulated payments)" appears in the list of gateways when you create a payment method. Its configuration form has one required field, the webhook secret. Labels are translated into English and French.
 - **Webhook signature.** `WebhookSignature` signs a payload with HMAC-SHA256 and verifies incoming signatures. The header has the form `t=<timestamp>,v1=<signature>`. The timestamp is part of the signed data, and a signature more than 5 minutes older or newer than the current time is rejected, which limits replay attacks. The tolerance can be changed. Signatures are compared with `hash_equals()`.
+- **Redirect to a simulated payment page.** When a customer pays with Sandbox, they are redirected to a page that shows the amount to pay, like the hosted page of a real payment provider.
 
 The next features are listed in the [roadmap](#roadmap).
 
@@ -33,8 +34,8 @@ The payment flow will use the Payment Request system introduced in Sylius 2.0, r
 - [x] Test application and continuous integration
 - [x] Webhook signature
 - [x] Payment method in the admin panel
-- [ ] Redirect to a simulated payment page (in progress)
-- [ ] Simulated payment page: accept, refuse or cancel, then return to the shop
+- [x] Redirect to a simulated payment page
+- [ ] Simulated payment page: accept, refuse or cancel, then return to the shop (in progress)
 - [ ] Payment status update and end-to-end scenarios
 - [ ] Webhook handling: replayed, forged and out-of-order notifications
 - [ ] First release (v0.1.0)
