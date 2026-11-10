@@ -23,11 +23,15 @@ The code is split by responsibility:
 | Folder | Role | Depends on Sylius |
 |---|---|---|
 | `src/Core` | Business rules in plain PHP, such as the webhook signature | No |
-| `src/Form`, `config`, `templates`, `translations` | Integration with Sylius: payment method, admin form, Twig hooks | Yes |
+| `src/Command`, `src/CommandProvider`, `src/CommandHandler` | Payment Request flow: commands, the providers that create them, and their handlers | Yes |
+| `src/OrderPay` | HTTP responses sent to the customer during payment, such as the redirect to the simulated page | Yes |
+| `src/Controller`, `templates/shop` | Simulated payment page | Yes |
+| `src/Form`, `templates/admin` | Payment method configuration in the admin panel | Yes |
+| `config`, `translations` | Service wiring, routes, Twig hooks and translations | Yes |
 
 Keeping `src/Core` free of any Sylius dependency makes it simple to unit test, and it could be reused in a plugin for another e-commerce platform.
 
-The payment flow will use the Payment Request system introduced in Sylius 2.0, rather than Payum.
+The payment flow uses the Payment Request system introduced in Sylius 2.0, rather than Payum.
 
 ## Roadmap
 
