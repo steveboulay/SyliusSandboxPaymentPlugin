@@ -33,6 +33,8 @@ Keeping `src/Core` free of any Sylius dependency makes it simple to unit test, a
 
 The payment flow uses the Payment Request system introduced in Sylius 2.0, rather than Payum.
 
+The main technical decisions are recorded in [docs/adr](docs/adr/).
+
 ## Roadmap
 
 - [x] Test application and continuous integration
