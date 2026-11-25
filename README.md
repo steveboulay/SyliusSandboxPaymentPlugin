@@ -89,6 +89,8 @@ GitHub Actions runs these checks, along with Composer and service container vali
 
 Each change is made on its own branch and checked by the CI in a pull request. Pull requests are merged into `main` with a merge commit rather than squashed, so that the history keeps each step of the work, for example a failing test followed by the code that makes it pass. Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/).
 
+How AI was used on this project, step by step, is recorded in [NOTES-IA.md](NOTES-IA.md) (in French).
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
